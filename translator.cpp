@@ -94,9 +94,11 @@ string translator::translateTutWord(string c){
   string temp = "";
   model cd;
   int double_counter = 0;
+  bool capital = false;
   for(int i=0; i<c.length(); ++i){
     temp = temp + c[i];
     string af = cd.translateTutCharacter(temp);
+
     if((double_counter==1) && (temp=="t")){
       if(c[i+2]=='t'||c[i+2]=='T'){
         temp="t";
@@ -109,12 +111,28 @@ string translator::translateTutWord(string c){
     if(af=="NonExisting"){
       continue;
     }
-    if(af=="double"){
+    if(af=="double"||af=="Double"){
       temp = "";
+      if(af=="Double"){
+        capital = true;
+      }
       double_counter = 1;
       continue;
     }
     if(double_counter==1){
+      if(capital){
+        char cap;
+        cap = toupper(af[0]);
+        af[0] = cap;
+        ret = ret + af;
+        cap = tolower(af[0]);
+        af[0] = cap;
+        ret = ret + af;
+        temp = "";
+        double_counter = 0;
+        capital = false;
+        continue;
+      }
       ret = ret + af;
       ret = ret + af;
       temp = "";

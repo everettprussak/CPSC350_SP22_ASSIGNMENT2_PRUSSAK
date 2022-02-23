@@ -357,6 +357,9 @@ string model::translateTutCharacter(string c1){
   }
 
   else if(c=="squa"){
+    if(case_c==true){
+      return "Double";
+    }
     return "double";
   }
 
