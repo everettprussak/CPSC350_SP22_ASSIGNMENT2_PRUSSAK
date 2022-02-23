@@ -29,14 +29,14 @@ It gets written in the new file, then closes.
 
 void fileprocessor::processFile(string input_file, string output_file){
   ifstream in_file;
-  translator finisher;
+  translator *finisher;
   string line;
   string line1;
   in_file.open(input_file);
   //int y = 0;
 
     while(getline(in_file,line)){
-      line1 = line1 + finisher.translateEnglishSentence(line) + "\n";
+      line1 = line1 + finisher->translateEnglishSentence(line) + "\n";
   //    y++;
 }
     in_file.close();
@@ -56,13 +56,13 @@ This is the method used for translating an Tutnese Input text file to and Englis
 
 void fileprocessor::processTut(string input_file1, string output_file1){
   ifstream in_file1;
-  translator finisher2;
+  translator *finisher2;
   string line_A;
   string line2;
   in_file1.open(input_file1);
 
     while(getline(in_file1,line_A)){
-      line2 = line2 + finisher2.translateTutSentence(line_A) + "\n";
+      line2 = line2 + finisher2->translateTutSentence(line_A) + "\n";
 }
     in_file1.close();
 
